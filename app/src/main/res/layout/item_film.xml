@@ -4,12 +4,14 @@
     android:layout_margin="10dp"
     android:padding="10dp"
     android:layout_height="wrap_content"
-    android:background="#0000FF"
+    android:background="#400000FF"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:id="@+id/titulo_textview"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,6 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:id="@+id/director_textview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titulo_textview"/>
@@ -25,6 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:id="@+id/lanzamiento_textview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/director_textview"/>
