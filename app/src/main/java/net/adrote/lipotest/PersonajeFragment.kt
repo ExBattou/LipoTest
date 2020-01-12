@@ -16,9 +16,6 @@ import net.adrote.lipotest.model.Personaje
 import net.adrote.lipotest.ui.MovieListViewModel
 import net.adrote.lipotest.ui.PersonajeAdapter
 
-/**
- * A simple [Fragment] subclass.
- */
 class PersonajeFragment : Fragment() {
 
     private val viewModel: MovieListViewModel by activityViewModels()
@@ -27,13 +24,14 @@ class PersonajeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_personaje, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progress.visibility = View.VISIBLE
+        personajeRecycler.visibility = View.GONE
         viewModel.personajeListtoObserve().observe(viewLifecycleOwner, Observer {
             prepareRecycler(it,personajeRecycler)
         })
@@ -47,6 +45,8 @@ class PersonajeFragment : Fragment() {
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.itemAnimator = DefaultItemAnimator()
             recyclerAdapter.notifyDataSetChanged()
+            progress.visibility = View.GONE
+            recycler.visibility = View.VISIBLE
         }
     }
 

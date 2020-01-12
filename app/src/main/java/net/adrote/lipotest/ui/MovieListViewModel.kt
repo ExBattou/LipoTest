@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import net.adrote.cabbieonetest.api.SWApi
 import net.adrote.lipotest.model.FilmQuery
@@ -16,8 +15,6 @@ class MovieListViewModel : ViewModel() {
     private val client = SWApi.create()
     private var filmList = MutableLiveData<FilmQuery>()
     private var personajesList = MutableLiveData<List<Personaje>>()
-
-    var myList: MutableList<Personaje> = mutableListOf()
     private var listaDeUrls = mutableListOf<String>()
 
     // TODO: Implement the ViewModel
@@ -37,9 +34,10 @@ class MovieListViewModel : ViewModel() {
     }
 
     fun getPersonajes(){
-
+        var myList: MutableList<Personaje> = mutableListOf()
+        personajesList.value = myList
+        viewModelScope.launch (Dispatchers.IO){
         for(urlPersonaje in listaDeUrls) {
-            viewModelScope.launch (Dispatchers.IO){
                 urlPersonaje.dropLast(1)
                 var toGO = urlPersonaje.takeLast(3)
                 val result = client.getCharacter(toGO.replace("\\D+",""))
@@ -47,11 +45,14 @@ class MovieListViewModel : ViewModel() {
                 if(result.isSuccessful && responseBody != null){
                     var personaje = responseBody
                     myList.add(personaje)
+
                 }
             }
-
+            personajesList.postValue(myList)
         }
-        personajesList.value = myList
+//        if(myList.size>0){
+//            personajesList.value = myList
+//        }
     }
 
     fun personajeListtoObserve():LiveData<List<Personaje>> {
@@ -62,7 +63,6 @@ class MovieListViewModel : ViewModel() {
         if(laLista != null && laLista.isNotEmpty()) {
             listaDeUrls.addAll(laLista)
         }
-
     }
 }
 

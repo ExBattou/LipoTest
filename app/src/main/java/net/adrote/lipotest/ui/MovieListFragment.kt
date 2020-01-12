@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +31,8 @@ class MovieListFragment : Fragment(),FilmAdapter.OnFilmClickListener  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progress_movies.visibility=View.VISIBLE
+        mainRecycler.visibility = View.GONE
 
         viewModel.dataListToObserve().observe(viewLifecycleOwner, Observer {
             prepareRecycler(it,mainRecycler)
@@ -46,13 +47,15 @@ class MovieListFragment : Fragment(),FilmAdapter.OnFilmClickListener  {
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.itemAnimator = DefaultItemAnimator()
             recyclerAdapter.notifyDataSetChanged()
+            progress_movies.visibility=View.GONE
+            recycler.visibility = View.VISIBLE
         }
 
     }
 
     override fun onFilmClick(episodeId: String, listaPersonajes: List<String?>?) {
         viewModel.saveUrlsFromPersonajes(listaPersonajes as List<String>)
-        viewModel.getPersonajes()
+        //viewModel.getPersonajes()
 
         findNavController().navigate(R.id.action_movieListFragment_to_personajeFragment)
     }
