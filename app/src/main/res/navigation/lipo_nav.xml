@@ -7,16 +7,20 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="net.adrote.lipotest.ui.MovieListFragment"
+        android:name="net.adrote.lipotest.ui.fragment.MovieListFragment"
         android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movie_list" >
         <action
             android:id="@+id/action_movieListFragment_to_personajeFragment"
-            app:destination="@id/personajeFragment" />
+            app:destination="@id/personajeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/personajeFragment"
-        android:name="net.adrote.lipotest.PersonajeFragment"
+        android:name="net.adrote.lipotest.ui.fragment.PersonajeFragment"
         android:label="fragment_personaje"
         tools:layout="@layout/fragment_personaje" />
 </navigation>

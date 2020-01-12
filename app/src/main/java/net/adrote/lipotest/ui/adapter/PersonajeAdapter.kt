@@ -1,4 +1,4 @@
-package net.adrote.lipotest.ui
+package net.adrote.lipotest.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +16,10 @@ class PersonajeAdapter (private val list:List<Personaje>) : RecyclerView.Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonajeViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
-        return PersonajeViewHolder(inflater, parent)
+        return PersonajeViewHolder(
+            inflater,
+            parent
+        )
 
     }
 

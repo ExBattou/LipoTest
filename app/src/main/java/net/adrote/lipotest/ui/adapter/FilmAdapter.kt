@@ -1,4 +1,4 @@
-package net.adrote.lipotest.ui
+package net.adrote.lipotest.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +16,10 @@ class FilmAdapter(private val list:List<Films>, private val clickListener: OnFil
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
-        return FilmViewHolder(inflater, parent)
+        return FilmViewHolder(
+            inflater,
+            parent
+        )
 
     }
 

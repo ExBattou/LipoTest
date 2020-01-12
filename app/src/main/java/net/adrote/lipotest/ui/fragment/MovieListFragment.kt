@@ -1,4 +1,4 @@
-package net.adrote.lipotest.ui
+package net.adrote.lipotest.ui.fragment
 
 
 import android.os.Bundle
@@ -16,10 +16,12 @@ import kotlinx.android.synthetic.main.fragment_movie_list.*
 import net.adrote.lipotest.R
 import net.adrote.lipotest.model.FilmQuery
 import net.adrote.lipotest.model.Films
+import net.adrote.lipotest.ui.adapter.FilmAdapter
+import net.adrote.lipotest.ui.viewmodel.MovieListViewModel
 
-class MovieListFragment : Fragment(),FilmAdapter.OnFilmClickListener  {
+class MovieListFragment : Fragment(), FilmAdapter.OnFilmClickListener  {
 
-    private val viewModel:MovieListViewModel by activityViewModels()
+    private val viewModel: MovieListViewModel by activityViewModels()
 
             override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +44,10 @@ class MovieListFragment : Fragment(),FilmAdapter.OnFilmClickListener  {
 
     private fun prepareRecycler(itemList: FilmQuery, recycler: RecyclerView) {
         if(itemList.films!!.isNotEmpty()) {
-            var recyclerAdapter = FilmAdapter((itemList!!.films as List<Films>?)!!,this)
+            var recyclerAdapter = FilmAdapter(
+                (itemList!!.films as List<Films>?)!!,
+                this
+            )
             recycler.adapter = recyclerAdapter
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.itemAnimator = DefaultItemAnimator()

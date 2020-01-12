@@ -1,7 +1,8 @@
-package net.adrote.lipotest
+package net.adrote.lipotest.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import net.adrote.lipotest.R
 
 class MainActivity : AppCompatActivity() {
 

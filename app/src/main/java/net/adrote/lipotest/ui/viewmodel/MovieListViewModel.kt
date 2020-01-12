@@ -1,4 +1,4 @@
-package net.adrote.lipotest.ui
+package net.adrote.lipotest.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
